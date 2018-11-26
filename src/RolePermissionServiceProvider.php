@@ -19,9 +19,9 @@ class RolePermissionServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/migrations');
         // $router->middleware(Authorize::class);
-        // $this->publishes([
-        //     __DIR__.'/migrations/' => database_path('migrations')
-        // ], 'migrations');
+        $this->publishes([
+            __DIR__.'/migrations/' => database_path('migrations')
+        ], 'migrations');
         include __DIR__.'/routes.php';
         $this->registerGates();
         
