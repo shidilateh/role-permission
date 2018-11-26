@@ -21,10 +21,6 @@ class RolePermissionServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/migrations');
 
-        $this->publishes([
-            __DIR__.'/migrations' => database_path('migrations'),
-        ], 'migrations');
-
         include __DIR__.'/routes.php';
         $this->registerGates();
     }
@@ -43,21 +39,22 @@ class RolePermissionServiceProvider extends ServiceProvider
 
     public function registerGates()
     {
-        if(Schema::hasTable('Permission'))
+        if(Schema::hasTable('permissions'))
         {
-            $permissionss = Permission::pluck('slug');
 
+            Gate::before(function ($user, $ability) {
+                if ($user->isSuperAdmin()) {
+                    return true;
+                }
+            });
+
+            $permissionss = Permission::pluck('slug');
+            
             foreach ($permissionss as $key => $permission) {
                 Gate::define($permission, function ($user) use ($permission){
                     return $user->hasAccess([$permission]);
                 });
             }
         }
-
-        Gate::before(function ($user, $ability) {
-            if ($user->isSuperAdmin()) {
-                return true;
-            }
-        });
     }
 }
