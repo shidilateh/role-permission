@@ -7,6 +7,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Gate;
 // use \Illuminate\Auth\Middleware\Authorize;
 use Amdxion\RolePermission\Models\Permission;
+use Artisan;
 
 class RolePermissionServiceProvider extends ServiceProvider
 {
@@ -19,12 +20,10 @@ class RolePermissionServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/migrations');
         // $router->middleware(Authorize::class);
-        $this->publishes([
-            __DIR__.'/migrations/' => database_path('migrations')
-        ], 'migrations');
+        Artisan::call('migrate', array('--path' => 'app/migrations', '--force' => true));
         include __DIR__.'/routes.php';
         $this->registerGates();
-        
+
 
 
     }

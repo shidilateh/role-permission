@@ -19,5 +19,10 @@
                 "Amdxion\\RolePermission\\RolePermissionServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "@php artisan migrate"
+        ]
     }
 }
