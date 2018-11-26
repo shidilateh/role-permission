@@ -1,0 +1,11 @@
+{
+    "name": "amdxion/role-permission",
+    "description": "Role Permission for laravel Gate & Policies for authentication module",
+    "authors": [
+        {
+            "name": "Rushidi Lateh",
+            "email": "a01cda@gmail.com"
+        }
+    ],
+    "require": {}
+}
