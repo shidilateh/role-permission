@@ -7,5 +7,17 @@
             "email": "a01cda@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Amdxion\\RolePermission\\RolePermissionServiceProvider"
+            ]
+        }
+    }
 }
