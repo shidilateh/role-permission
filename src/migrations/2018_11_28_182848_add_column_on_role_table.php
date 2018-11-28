@@ -14,7 +14,7 @@ class AddColumnOnRoleTable extends Migration
     public function up()
     {
         Schema::table('roles', function (Blueprint $table) {
-            $table->unsignedInteger('client_id')->after('slug');
+            $table->unsignedInteger('client_id')->nullable()->after('slug');
 
             $table->foreign('client_id')->references('id')->on('oauth_clients')->onDelete('cascade');
         });
