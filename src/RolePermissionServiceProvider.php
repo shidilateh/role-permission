@@ -23,6 +23,7 @@ class RolePermissionServiceProvider extends ServiceProvider
 
         include __DIR__.'/routes.php';
         $this->registerGates();
+        $this->registerPassportTokens();
     }
 
     /**
@@ -55,6 +56,16 @@ class RolePermissionServiceProvider extends ServiceProvider
                     return $user->hasAccess([$permission]);
                 });
             }
+        }
+    }
+
+    public function registerPassportTokens()
+    {
+        Passport::routes();
+        if(Schema::hasTable('permissions'))
+        {
+            $permissions_scopes = Permission::pluck('name','slug')->toArray();
+            Passport::tokensCan($permissions_scopes);
         }
     }
 }
