@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 // use \Illuminate\Auth\Middleware\Authorize;
 use Amdxion\RolePermission\Models\Permission;
 use Illuminate\Support\Facades\Schema;
+use Laravel\Passport\Passport;
 use Artisan;
 
 class RolePermissionServiceProvider extends ServiceProvider
